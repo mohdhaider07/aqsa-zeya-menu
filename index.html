@@ -303,6 +303,156 @@
       letter-spacing: 2px;
     }
 
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 10px 5px;
+      }
+
+      .pdf-container {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        padding: 8mm;
+        margin: 10px auto;
+        max-width: 100%;
+        box-shadow: none;
+      }
+
+      .header-text {
+        margin-bottom: 20px;
+        padding: 15px 20px;
+      }
+
+      .header-text h2 {
+        font-size: 1.5em;
+        letter-spacing: 2px;
+      }
+
+      .header-text h2::before,
+      .header-text h2::after {
+        display: none;
+      }
+
+      .header-subtitle {
+        font-size: 0.8em;
+        letter-spacing: 1px;
+      }
+
+      .menu-card {
+        max-width: 100%;
+      }
+
+      .header h1 {
+        font-size: 2.2em;
+        letter-spacing: 1px;
+      }
+
+      .ribbon {
+        font-size: 1.1em;
+        letter-spacing: 3px;
+        padding: 8px 25px;
+      }
+
+      .menu-section {
+        padding: 15px;
+      }
+
+      .menu-item {
+        font-size: 1rem;
+        padding: 8px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+
+      .menu-item span:last-child {
+        align-self: flex-end;
+        font-size: 1rem;
+        padding: 5px 12px;
+      }
+
+      .divider::after {
+        display: none;
+      }
+
+      .food-icon {
+        font-size: 3em;
+      }
+
+      .food-icon:nth-child(3),
+      .food-icon:nth-child(4),
+      .food-icon:nth-child(5) {
+        display: none;
+      }
+
+      .download-btn {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 0.9em;
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .pdf-container {
+        padding: 5mm;
+      }
+
+      .header-text {
+        padding: 12px 15px;
+      }
+
+      .header-text h2 {
+        font-size: 1.3em;
+        letter-spacing: 1px;
+      }
+
+      .header-subtitle {
+        font-size: 0.75em;
+      }
+
+      .header h1 {
+        font-size: 1.8em;
+      }
+
+      .ribbon {
+        font-size: 1em;
+        letter-spacing: 2px;
+        padding: 6px 20px;
+      }
+
+      .menu-item {
+        font-size: 0.9rem;
+        padding: 6px 0;
+      }
+
+      .menu-item span:last-child {
+        font-size: 0.9rem;
+        padding: 4px 10px;
+      }
+
+      .food-icon {
+        font-size: 2.5em;
+      }
+    }
+
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+      .pdf-container {
+        width: 90%;
+        max-width: 700px;
+      }
+
+      .header h1 {
+        font-size: 2.8em;
+      }
+
+      .menu-item {
+        font-size: 1.1rem;
+      }
+    }
+
     .download-btn {
       margin-top: 30px;
       background: linear-gradient(135deg, #8B4513, #654321);
@@ -374,9 +524,9 @@
       </div>
 
       <div class="menu-section">
-        <div class="menu-item"><span>✨ Premium Cupcakes</span><span>25</span></div>
-        <div class="menu-item"><span>🥄 Special Creamy Dahi Vada</span><span>25</span></div>
-        <div class="menu-item"><span>🌶️ Spicy Crispy Papdi Chaat</span><span>30</span></div>
+        <div class="menu-item"><span>✨ Premium Cupcakes</span><span>35</span></div>
+        <div class="menu-item"><span>🥄 Special Creamy Dahi Vada</span><span>30</span></div>
+        <div class="menu-item"><span>🌶️ Spicy Crispy Papdi Chaat</span><span>35</span></div>
 
         <div class="divider"></div>
 
@@ -471,9 +621,9 @@
         doc.setFontSize(12);
         
         const items = [
-          ["Premium Rainbow Cupcakes", "25/-"],
-          ["Special Creamy Dahi Vada", "25/-"],
-          ["Spicy Crispy Papdi Chaat", "30/-"],
+          ["Premium Rainbow Cupcakes", "35/-"],
+          ["Special Creamy Dahi Vada", "30/-"],
+          ["Spicy Crispy Papdi Chaat", "35/-"],
           ["- - - - - - - - - - - - - - -", ""],
           ["Fresh Homemade Dahi", "10/-"],
           ["Tangy Mint Chatni", "5/-"],
