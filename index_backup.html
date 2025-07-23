@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aqsa Zeya Menu</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap');
+    
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #E5E5E5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .pdf-container {
+      background: linear-gradient(135deg, #F4A261, #E76F51);
+      width: 210mm;
+      min-height: 260mm;
+      max-width: 95vw;
+      box-shadow: 0 0 20px rgba(0,0,0,0.15);
+      position: relative;
+      padding: 20mm;
+      box-sizing: border-box;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+
+    .pdf-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.05) 0%, transparent 30%);
+      z-index: 0;
+    }
+
+    .food-illustrations {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      top: 0;
+      left: 0;
+    }
+
+    .food-icon {
+      position: absolute;
+      font-size: 4em;
+      opacity: 0.3;
+    }
+
+    .food-icon:nth-child(1) {
+      top: 12%;
+      left: 8%;
+      transform: rotate(-15deg);
+    }
+
+    .food-icon:nth-child(2) {
+      top: 12%;
+      right: 8%;
+      transform: rotate(15deg);
+    }
+
+    .header-text {
+      text-align: center;
+      margin-bottom: 30px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .header-text h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #2C1810;
+      margin: 0;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .menu-card {
+      background: linear-gradient(145deg, #D2691E, #A0522D);
+      color: #F5DEB3;
+      border-radius: 30px;
+      width: 100%;
+      max-width: 600px;
+      padding: 0;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #F4A261, #E9C46A);
+      text-align: center;
+      padding: 40px 25px;
+      position: relative;
+      border-radius: 26px 26px 0 0;
+    }
+
+    .header h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.5em;
+      margin: 0;
+      color: #F5F5DC;
+      text-shadow: 3px 3px 6px rgba(139, 69, 19, 0.6);
+      letter-spacing: 2px;
+    }
+
+    .ribbon {
+      background: linear-gradient(135deg, #8B4513, #654321);
+      display: inline-block;
+      padding: 12px 40px;
+      font-weight: 700;
+      margin-top: 20px;
+      color: #F5DEB3;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      font-size: 1.5em;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .ribbon::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 24px solid transparent;
+      border-bottom: 24px solid transparent;
+      border-right: 20px solid #8B4513;
+    }
+
+    .ribbon::after {
+      content: '';
+      position: absolute;
+      right: -20px;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 24px solid transparent;
+      border-bottom: 24px solid transparent;
+      border-left: 20px solid #8B4513;
+    }
+
+    .menu-section {
+      background: #8B4513;
+      padding: 30px;
+      border-radius: 0 0 26px 26px;
+      position: relative;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #F5DEB3;
+      border-bottom: 2px dotted rgba(245, 222, 179, 0.3);
+      margin: 0;
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+
+    .menu-item span:first-child {
+      font-weight: 700;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .menu-item span:last-child {
+      background: linear-gradient(135deg, #F4A261, #E76F51);
+      padding: 8px 16px;
+      border-radius: 20px;
+      color: #2C1810;
+      font-weight: 800;
+      border: 2px solid #F5DEB3;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      min-width: 60px;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .divider {
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #F5DEB3, transparent);
+      margin: 25px 0;
+      position: relative;
+    }
+
+    .divider::after {
+      content: '- - - - - - - - - - - - - - - - - - - -';
+      position: absolute;
+      left: 50%;
+      top: -8px;
+      transform: translateX(-50%);
+      background: #8B4513;
+      color: #F5DEB3;
+      padding: 0 10px;
+      font-size: 1em;
+      letter-spacing: 2px;
+    }
+
+    .download-btn {
+      margin-top: 30px;
+      background: linear-gradient(135deg, #8B4513, #654321);
+      color: #F5DEB3;
+      padding: 15px 30px;
+      border: none;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1em;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+      border: 2px solid #F4A261;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .download-btn::before {
+      content: '📄';
+      margin-right: 8px;
+      font-size: 1em;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+      background: linear-gradient(135deg, #654321, #8B4513);
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .download-btn {
+        display: none;
+      }
+      .pdf-container {
+        box-shadow: none;
+        margin: 0;
+        padding: 10mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="pdf-container">
+    <div class="food-illustrations">
+      <div class="food-icon">🧁</div>
+      <div class="food-icon">🥘</div>
+    </div>
+
+    <div class="header-text">
+      <h2>College Food Fest</h2>
+    </div>
+
+    <div class="menu-card" id="menu-content">
+      <div class="header">
+        <h1>Aqsa Zeya</h1>
+        <div class="ribbon">MENU</div>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-item"><span>Cupcakes</span><span>25</span></div>
+        <div class="menu-item"><span>Dahi vada</span><span>25</span></div>
+        <div class="menu-item"><span>Papdi chaat</span><span>30</span></div>
+
+        <div class="divider"></div>
+
+        <div class="menu-item"><span>Dahi</span><span>10</span></div>
+        <div class="menu-item"><span>Chatni</span><span>5</span></div>
+        <div class="menu-item"><span>Chana cooked</span><span>20</span></div>
+        <div class="menu-item"><span>Cold drink</span><span>10</span></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="download-btn" onclick="downloadPDF()">Download Menu as PDF</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    async function downloadPDF() {
+      try {
+        // Hide the download button temporarily
+        const downloadBtn = document.querySelector('.download-btn');
+        downloadBtn.style.display = 'none';
+        
+        // Get the PDF container element
+        const element = document.querySelector('.pdf-container');
+        
+        // Configure html2canvas options for better quality
+        const canvas = await html2canvas(element, {
+          scale: 2, // Higher resolution
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: '#ffffff',
+          width: element.scrollWidth,
+          height: element.scrollHeight,
+          scrollX: 0,
+          scrollY: 0
+        });
+        
+        // Show the download button again
+        downloadBtn.style.display = 'block';
+        
+        // Create PDF
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+        
+        // Calculate dimensions to fit A4
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = 210; // A4 width in mm
+        const pageHeight = 297; // A4 height in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        
+        let heightLeft = imgHeight;
+        let position = 0;
+        
+        // Add the image to PDF
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        
+        // Add additional pages if content is longer than one page
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+        
+        // Save the PDF
+        pdf.save('aqsa-zeya-college-food-fest-menu.pdf');
+        
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+        
+        // Fallback to simple text-based PDF if html2canvas fails
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        // Add title and content
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(16);
+        doc.text("COLLEGE FOOD FEST", 70, 20);
+        
+        doc.setFontSize(22);
+        doc.text("Aqsa Zeya", 75, 35);
+        
+        doc.setFontSize(14);
+        doc.text("MENU", 95, 45);
+        
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(12);
+        
+        const items = [
+          ["Cupcakes", "25/-"],
+          ["Dahi vada", "25/-"],
+          ["Papdi chaat", "30/-"],
+          ["- - - - - - - - - - - - - - - - - - - -", ""],
+          ["Dahi", "10/-"],
+          ["Chatni", "5/-"],
+          ["Chana cooked", "20/-"],
+          ["Cold drink", "10/-"]
+        ];
+        
+        let y = 65;
+        items.forEach(([item, price]) => {
+          doc.text(item, 20, y);
+          if (price) {
+            doc.text(price, 160, y, { align: "right" });
+          }
+          y += 10;
+        });
+        
+        doc.save("aqsa-zeya-menu.pdf");
+      }
+    }
+  </script>
+
+</body>
+</html>
