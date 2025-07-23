@@ -395,6 +395,110 @@
       }
     }
 
+    /* Contact Section Styles */
+    .contact-section {
+      background: linear-gradient(135deg, rgba(139, 69, 19, 0.9), rgba(101, 67, 33, 0.9));
+      border-radius: 20px;
+      padding: 15px;
+      margin-top: 15px;
+      text-align: center;
+      border: 2px solid #F4A261;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      background: linear-gradient(45deg, #F4A261, #E76F51, #F4A261);
+      border-radius: 23px;
+      z-index: -1;
+      opacity: 0.7;
+    }
+
+    .contact-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .qr-code {
+      width: 120px;
+      height: 120px;
+      background: white;
+      border-radius: 15px;
+      padding: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      border: 3px solid #F4A261;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .qr-code:hover {
+      transform: scale(1.05);
+    }
+
+    .qr-code canvas {
+      border-radius: 8px;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 200px;
+      text-align: left;
+    }
+
+    .contact-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3em;
+      color: #F5DEB3;
+      margin: 0 0 8px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+    }
+
+    .phone-number {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #F4A261;
+      margin: 0 0 5px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      letter-spacing: 1px;
+    }
+
+    .whatsapp-text {
+      font-size: 0.85em;
+      color: #F5DEB3;
+      margin: 0;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .whatsapp-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+      background: linear-gradient(135deg, #128C7E, #25D366);
+    }
+
+    .whatsapp-btn::before {
+      content: '�';
+      margin-right: 8px;
+      font-size: 1.1em;
+    }
+
     @media screen and (max-width: 480px) {
       .pdf-container {
         padding: 5mm;
@@ -435,6 +539,43 @@
 
       .food-icon {
         font-size: 2.5em;
+      }
+
+      .contact-section {
+        padding: 12px;
+        margin-top: 15px;
+      }
+
+      .contact-content {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+
+      .qr-code {
+        width: 105px;
+        height: 105px;
+        padding: 8px;
+        margin: 0 auto;
+      }
+
+      .contact-info {
+        text-align: center;
+        min-width: auto;
+      }
+
+      .contact-title {
+        font-size: 1.1em;
+        margin-bottom: 5px;
+      }
+
+      .phone-number {
+        font-size: 1.1em;
+        margin-bottom: 3px;
+      }
+
+      .whatsapp-text {
+        font-size: 0.8em;
       }
     }
 
@@ -536,13 +677,40 @@
         <div class="menu-item"><span>🥤 Refreshing Cold Drink</span><span>10</span></div>
       </div>
     </div>
+
+    <div class="contact-section">
+      <div class="contact-content">
+        <div class="qr-code">
+          <canvas id="qrcode" width="105" height="105"></canvas>
+        </div>
+        <div class="contact-info">
+          <h3 class="contact-title">📞 Contact Us</h3>
+          <div class="phone-number">+91 89105 04493</div>
+          <div class="whatsapp-text">Scan QR to WhatsApp</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <button class="download-btn" onclick="downloadPDF()">Download Menu as PDF</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
   <script>
+    // Generate QR Code for WhatsApp
+    document.addEventListener('DOMContentLoaded', function() {
+      const qr = new QRious({
+        element: document.getElementById('qrcode'),
+        value: 'https://wa.me/918910504493',
+        size: 105,
+        backgroundAlpha: 1,
+        foreground: '#2C1810',
+        background: '#FFFFFF',
+        level: 'M'
+      });
+    });
+
     async function downloadPDF() {
       try {
         // Hide the download button temporarily
